@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rawang 新双层店铺</title>
+<meta name="description" content="Rawang 全新双层 & 三层店铺，就在大型超市旁边，3 条大道直达。净价从 RM1.16 mil 起，零首期*。点选单位马上看净价。">
+<meta property="og:title" content="Rawang 新双层店铺 · 净价从 RM1.16 mil 起">
+<meta property="og:description" content="大型超市就在隔壁 · 3 条大道直达 · 零首期* · 点选单位马上看净价">
+<meta property="og:image" content="img/shops.jpg">
+<meta name="theme-color" content="#0c1f1c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   设计 tokens（要换颜色，只改这里）
+   ========================================================= */
+:root{
+  --ink:#0c1f1c;
+  --ink-2:#132b27;
+  --ink-3:#1c3a35;
+  --paper:#f6f3ec;
+  --paper-2:#ece6da;
+  --white:#ffffff;
+  --text:#13201e;
+  --muted:#66706d;
+  --muted-dark:#9db0ab;
+  --line:#e2dccf;
+  --line-dark:#24423c;
+  --accent:#f2a33a;      /* 琥珀金 */
+  --accent-2:#ffc76b;
+  --green:#1f8a70;
+  --green-2:#2fb38f;
+  --coral:#e8603c;
+  --t2:#7fc8b4;          /* 双层中间 */
+  --t3e:#f2c46d;         /* 三层边间 */
+  --t3c:#f29b5c;         /* 三层转角 */
+  --booked:#e8603c;
+  --sold:#3b4f4b;
+  --radius:20px;
+  --max:1180px;
+  --font:"Inter","Noto Sans SC",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select{font:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+
+/* ---------- 进度条 & 导航 ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--green-2));z-index:100}
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(12,31,28,.8);backdrop-filter:saturate(170%) blur(18px);-webkit-backdrop-filter:saturate(170%) blur(18px);border-color:rgba(255,255,255,.07)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:17px;white-space:nowrap;letter-spacing:-.01em}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:var(--ink);font-size:15px}
+.nav-steps{display:flex;gap:4px}
+.nav-steps a{color:var(--muted-dark);font-size:13px;padding:6px 12px;border-radius:999px;transition:.2s}
+.nav-steps a:hover,.nav-steps a.active{color:#fff;background:rgba(255,255,255,.08)}
+@media (max-width:960px){.nav-steps{display:none}}
+
+/* ---------- 按钮 ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-weight:700;font-size:16px;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent);color:var(--ink);box-shadow:0 12px 30px -10px rgba(242,163,58,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(242,163,58,.8)}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22)}
+.btn-ghost:hover{background:rgba(255,255,255,.18)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{transform:translateY(-2px)}
+.btn-sm{min-height:40px;padding:0 18px;font-size:14px}
+.btn .arrow{transition:transform .2s}
+.btn:hover .arrow{transform:translateX(4px)}
+@media (max-width:560px){.btn{white-space:normal;text-align:center;padding:12px 22px}}
+
+/* ---------- 通用 ---------- */
+.sec{padding:120px 0}
+@media (max-width:640px){.sec{padding:84px 0}}
+.dark{background:var(--ink);color:#fff}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+.dark .eyebrow{color:var(--accent)}
+.eyebrow .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;font-size:11px;letter-spacing:0}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.15;font-weight:900}
+h2{font-size:clamp(30px,4.8vw,54px);margin:16px 0 20px}
+h3{font-size:21px;font-weight:800;letter-spacing:-.02em}
+.lead{font-size:clamp(16px,1.5vw,19px);color:var(--muted);max-width:640px}
+.dark .lead{color:var(--muted-dark)}
+.hl{color:var(--accent)}
+.hl-g{color:var(--green)}
+.center{text-align:center}
+.center .lead{margin:0 auto}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{position:relative;min-height:100vh;min-height:100svh;color:#fff;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.hero-img{position:absolute;inset:0;background:url("img/shops.jpg") center 45%/cover no-repeat;transform:scale(1.08);animation:kb 18s ease-out forwards}
+@keyframes kb{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,31,28,.6) 0%,rgba(12,31,28,.2) 28%,rgba(12,31,28,.78) 60%,rgba(12,31,28,.98) 100%)}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:130px;padding-bottom:52px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border-radius:999px;background:rgba(12,31,28,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);font-size:13px;color:#e6ece9}
+.pill b{background:var(--accent);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:11px;letter-spacing:.06em;white-space:nowrap}
+.hero h1{font-size:clamp(38px,6.6vw,84px);margin:22px 0 18px;max-width:900px;text-shadow:0 4px 40px rgba(0,0,0,.35)}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.sub{font-size:clamp(16px,1.6vw,20px);color:#d5dfdb;max-width:600px;margin-bottom:30px}
+.hero p.sub b{color:#fff}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-note{margin-top:16px;font-size:13px;color:#a9bab5;display:flex;gap:8px;align-items:center}
+.dot-live{width:8px;height:8px;border-radius:50%;background:var(--green-2);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(47,179,143,.6)}80%,100%{box-shadow:0 0 0 10px rgba(47,179,143,0)}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid rgba(255,255,255,.15)}
+.stat{padding:22px 16px 0 0}
+.stat b{display:block;font-size:clamp(24px,3.1vw,38px);font-weight:900;letter-spacing:-.03em;line-height:1.1}
+.stat b small{font-size:.5em;font-weight:700;color:var(--accent);margin-left:2px}
+.stat span{font-size:13px;color:#a9bab5}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.ai-note{position:absolute;right:20px;bottom:14px;z-index:2;font-size:11px;color:rgba(255,255,255,.5)}
+
+/* =========================================================
+   STEP 1 — 目的
+   ========================================================= */
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+@media (max-width:900px){.goals{grid-template-columns:1fr}}
+.goal{text-align:left;background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius);padding:28px;transition:.25s;position:relative}
+.goal:hover{transform:translateY(-3px);border-color:#cfc6b4}
+.goal .em{font-size:36px;line-height:1}
+.goal h4{font-size:19px;font-weight:800;margin:14px 0 6px;letter-spacing:-.01em}
+.goal p{font-size:14.5px;color:var(--muted)}
+.goal .ck{position:absolute;top:20px;right:20px;width:28px;height:28px;border-radius:50%;border:2px solid #cfc6b4;display:grid;place-items:center;transition:.2s}
+.goal .ck svg{width:14px;height:14px;opacity:0;transition:.2s}
+.goal.on{border-color:var(--green);background:#f3fbf8;box-shadow:0 16px 36px -20px rgba(31,138,112,.6)}
+.goal.on .ck{background:var(--green);border-color:var(--green)}
+.goal.on .ck svg{opacity:1}
+.answer{margin-top:28px;background:var(--ink);color:#fff;border-radius:var(--radius);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;opacity:0;transform:translateY(10px);transition:.5s;pointer-events:none}
+.answer.show{opacity:1;transform:none;pointer-events:auto}
+.answer .big{font-size:21px;font-weight:800;letter-spacing:-.02em}
+.answer p{color:var(--muted-dark);font-size:15px;margin-top:4px;max-width:640px}
+
+/* =========================================================
+   STEP 2 — 视频
+   ========================================================= */
+.vid-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center;margin-top:24px}
+@media (max-width:900px){.vid-grid{grid-template-columns:1fr;gap:40px}}
+.phone{position:relative;width:100%;max-width:330px;margin:0 auto;aspect-ratio:9/16;border-radius:40px;padding:10px;background:linear-gradient(160deg,#2a4a44,#0a1715);box-shadow:0 40px 80px -30px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.08)}
+.phone video{width:100%;height:100%;object-fit:cover;border-radius:31px;background:#000}
+.phone .play{position:absolute;inset:10px;border-radius:31px;display:grid;place-items:center;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55));transition:opacity .3s}
+.phone .play span{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s}
+.phone .play:hover span{transform:scale(1.08)}
+.phone .play svg{width:30px;height:30px;fill:var(--ink);margin-left:4px}
+.phone .play em{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-style:normal;font-size:13px;font-weight:600;color:#fff}
+.phone.playing .play{opacity:0;pointer-events:none}
+.vpoints{list-style:none;display:grid;gap:14px;margin-top:28px}
+.vpoints li{display:flex;gap:16px;align-items:flex-start;background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:18px 20px}
+.vpoints li i{font-style:normal;font-size:24px;line-height:1.2}
+.vpoints li b{display:block;font-size:16px}
+.vpoints li span{font-size:14px;color:var(--muted-dark)}
+
+/* =========================================================
+   STEP 3 — 地点
+   ========================================================= */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:56px}
+.tile{border-radius:24px;overflow:hidden;position:relative;background:var(--white);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;min-height:240px}
+.tile.photo{color:#fff;border:0;background-size:cover;background-position:center}
+.tile.photo::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,31,28,0) 30%,rgba(12,31,28,.9))}
+.tile.photo>*{position:relative}
+.tile .k{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+.tile.photo .k{color:var(--accent-2)}
+.tile .big{font-size:clamp(40px,5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1;margin:6px 0}
+.tile .big small{font-size:.4em;font-weight:700;margin-left:2px}
+.tile h3{margin:6px 0 4px}
+.tile p{font-size:14.5px;color:var(--muted)}
+.tile.photo p{color:#d5dfdb}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+.tall{min-height:340px}
+@media (max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}.s2,.s3,.s4{grid-column:span 1}.wide-m{grid-column:span 2}}
+@media (max-width:560px){.bento{grid-template-columns:1fr}.wide-m{grid-column:span 1}.tile:not(.photo){min-height:0}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--paper-2);color:#3e4a47;font-weight:600}
+
+/* =========================================================
+   STEP 4 — 证明
+   ========================================================= */
+.proof{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
+@media (max-width:900px){.proof{grid-template-columns:1fr}}
+.pcard{border-radius:24px;overflow:hidden;background:var(--ink-2);border:1px solid var(--line-dark)}
+.pcard .ph{aspect-ratio:16/11;background-size:cover;background-position:center}
+.pcard .bd{padding:24px 26px}
+.pcard .tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(47,179,143,.15);color:var(--green-2)}
+.pcard .tag.o{background:rgba(242,163,58,.15);color:var(--accent-2)}
+.pcard h3{margin:12px 0 6px}
+.pcard p{font-size:14.5px;color:var(--muted-dark)}
+
+/* =========================================================
+   STEP 5 — 净价拆解
+   ========================================================= */
+.fall{margin-top:56px;background:var(--white);border:1px solid var(--line);border-radius:28px;padding:40px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;box-shadow:0 30px 80px -40px rgba(12,31,28,.35)}
+@media (max-width:900px){.fall{grid-template-columns:1fr;padding:28px 20px}}
+.wf{display:grid;gap:10px}
+.wf-row{display:grid;grid-template-columns:150px 1fr 130px;gap:14px;align-items:center;font-size:15px}
+@media (max-width:560px){.wf-row{grid-template-columns:96px 1fr 104px;font-size:13px;gap:8px}}
+.wf-row .lb{color:var(--muted);font-weight:600}
+.wf-row .bar{height:34px;border-radius:8px;background:var(--paper-2);position:relative;overflow:hidden}
+.wf-row .bar i{position:absolute;top:0;bottom:0;border-radius:8px;transition:left 1s cubic-bezier(.2,.7,.2,1),width 1s cubic-bezier(.2,.7,.2,1)}
+.wf-row .v{text-align:right;font-weight:800;letter-spacing:-.01em}
+.wf-row.minus .v{color:var(--coral)}
+.wf-row.total .lb{color:var(--text)}
+.wf-row.total .v{color:var(--green);font-size:18px}
+.wf-sum .k{font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.wf-sum .net{white-space:nowrap;font-size:clamp(36px,4.4vw,56px);font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--green);margin:8px 0}
+.wf-sum .save{display:inline-block;font-weight:800;background:#fff1dc;color:#9a5b05;border-radius:999px;padding:6px 14px;font-size:15px}
+.wf-sum ul{list-style:none;margin-top:20px;display:grid;gap:8px;font-size:14.5px;color:#3e4a47}
+.wf-sum li::before{content:"✓ ";color:var(--green);font-weight:800}
+.wf-switch{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.wf-switch button{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);font-weight:700;font-size:14px}
+.wf-switch button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fine{font-size:12px;color:var(--muted);margin-top:14px}
+.dark .fine{color:#7f938e}
+
+/* =========================================================
+   STEP 6 — 选单位
+   ========================================================= */
+.picker{margin-top:44px;display:grid;grid-template-columns:1.35fr .65fr;gap:16px;align-items:start}
+@media (max-width:1000px){.picker{grid-template-columns:1fr}}
+.picker>*,.fall>*,.vid-grid>*,.book>*,.loc>*{min-width:0}
+.siteplan{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:24px;padding:20px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:#cfdad7;margin-bottom:12px;align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.filters button{padding:8px 14px;border-radius:999px;border:1px solid var(--line-dark);font-size:13px;font-weight:700;color:#cfdad7}
+.filters button.on{background:#fff;color:var(--ink);border-color:#fff}
+.plan-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.plan-scroll svg{width:100%;height:auto}
+@media (max-width:640px){.plan-scroll svg{min-width:640px}}
+.plan-hint{display:none;font-size:12px;color:var(--muted-dark);margin-top:8px}
+@media (max-width:640px){.plan-hint{display:block}}
+.u{cursor:pointer}
+.u path,.u rect{transition:opacity .2s,stroke .2s}
+.u text{pointer-events:none;font-family:var(--font);font-weight:800}
+.u:hover path,.u:hover rect{stroke:#fff;stroke-width:2.5}
+.u.sel path,.u.sel rect{stroke:#fff;stroke-width:3.5}
+.u.dim{opacity:.22}
+.u.booked text,.u.sold text{fill:#fff}
+.ucard{background:#fff;color:var(--text);border-radius:24px;padding:26px;position:sticky;top:84px}
+@media (max-width:1000px){.ucard{position:static}}
+.ucard .empty{text-align:center;color:var(--muted);padding:36px 0}
+.ucard .empty b{display:block;font-size:42px;margin-bottom:6px}
+.ucard .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.ucard h3{font-size:40px;font-weight:900;letter-spacing:-.04em;margin:4px 0 6px}
+.badge{display:inline-block;font-size:12.5px;font-weight:800;padding:4px 12px;border-radius:999px;background:#e5f5ef;color:#127055}
+.badge.b{background:#fde6df;color:#b23c1c}
+.badge.s{background:#e7ebea;color:#4b5a57}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+.specs div{background:var(--paper);border-radius:12px;padding:10px 12px}
+.specs dt{font-size:11.5px;color:var(--muted)}
+.specs dd{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.calc{list-style:none;border-top:1px solid var(--line)}
+.calc li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.calc li span{color:var(--muted)}
+.calc li b{font-weight:700;white-space:nowrap}
+.calc li.m b{color:var(--coral)}
+.netbox{margin-top:14px;background:linear-gradient(135deg,#0f3b33,#0c1f1c);color:#fff;border-radius:18px;padding:18px 20px}
+.netbox .l{font-size:12.5px;color:var(--muted-dark);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.netbox .n{font-size:36px;font-weight:900;letter-spacing:-.04em;line-height:1.1;color:var(--accent-2)}
+.netbox .s{font-size:13.5px;color:#cfdad7;margin-top:2px}
+.netbox .mo{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);font-size:13.5px;color:#cfdad7}
+.netbox .mo b{color:#fff}
+.ucard .btn{width:100%;margin-top:16px}
+
+/* =========================================================
+   稀缺
+   ========================================================= */
+.scarce{background:linear-gradient(135deg,#f2a33a,#e8603c);color:var(--ink);border-radius:32px;padding:60px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.scarce>*{min-width:0}
+@media (max-width:900px){.scarce{grid-template-columns:1fr;padding:40px 22px}}
+.scarce h2{margin-top:10px}
+.scarce p{font-size:17px;color:#2b1a08}
+.scarce .eyebrow{color:var(--ink)}
+.meter{display:grid;gap:14px}
+.mrow{background:rgba(255,255,255,.35);border-radius:16px;padding:14px 18px}
+.mrow .t{display:flex;justify-content:space-between;font-weight:800;font-size:15px}
+.mrow .bar{height:10px;border-radius:999px;background:rgba(12,31,28,.15);margin-top:8px;overflow:hidden}
+.mrow .bar i{display:block;height:100%;border-radius:999px;background:var(--ink);transition:width 1s}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq{max-width:820px;margin:48px auto 0}
+.faq details{border-bottom:1px solid var(--line);padding:6px 0}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;font-size:18px;font-weight:800}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .plus{flex:none;width:32px;height:32px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;transition:.3s;font-size:20px;font-weight:400}
+.faq details[open] .plus{transform:rotate(45deg);background:var(--green);color:#fff}
+.faq details p{padding:0 52px 22px 0;color:var(--muted);font-size:16px}
+
+/* =========================================================
+   预约
+   ========================================================= */
+.book{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+@media (max-width:900px){.book{grid-template-columns:1fr;gap:32px}}
+.perks{list-style:none;margin-top:30px;display:grid;gap:18px}
+.perks li{display:flex;gap:16px;align-items:flex-start}
+.perks li i{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(242,163,58,.14);display:grid;place-items:center;font-style:normal;font-size:20px}
+.perks li b{display:block;font-size:16px}
+.perks li span{color:var(--muted-dark);font-size:14px}
+.agent{margin-top:34px;display:flex;align-items:center;gap:14px;padding:16px;border-radius:16px;background:var(--ink-2);border:1px solid var(--line-dark)}
+.agent .av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--coral));display:grid;place-items:center;font-weight:900;font-size:20px;color:var(--ink);flex:none;overflow:hidden}
+.agent .av img{width:100%;height:100%;object-fit:cover}
+.agent b{display:block}
+.agent span{font-size:13px;color:var(--muted-dark)}
+form.bf{background:#fff;color:var(--text);border-radius:28px;padding:36px;box-shadow:0 40px 100px -30px rgba(0,0,0,.55)}
+@media (max-width:560px){form.bf{padding:24px 18px}}
+.bf h3{font-size:24px;margin-bottom:6px}
+.bf .sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#33403d}
+.field input,.field select{width:100%;height:52px;border-radius:12px;border:1.5px solid var(--line);background:#fbfaf6;padding:0 16px;font-size:16px;color:var(--text);transition:.2s;-webkit-appearance:none;appearance:none}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2366706d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:40px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--green);background:#fff;box-shadow:0 0 0 4px rgba(31,138,112,.14)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:420px){.row2{grid-template-columns:1fr}}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slot{height:48px;border-radius:12px;border:1.5px solid var(--line);font-weight:700;font-size:14px;transition:.2s}
+.slot.on{border-color:var(--green);background:#f3fbf8;color:var(--green)}
+.bf .btn{width:100%;margin-top:8px;min-height:58px;font-size:17px}
+.bf .trustline{display:flex;justify-content:center;gap:16px;margin-top:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.err{color:#d93025;font-size:13px;margin-top:6px;display:none}
+.field.bad input{border-color:#d93025}
+.field.bad .err{display:block}
+.done{display:none;text-align:center;padding:40px 10px}
+.done .big{font-size:56px}
+.done h3{margin:10px 0}
+.done p{color:var(--muted)}
+
+footer{background:var(--ink);color:#7f938e;font-size:12px;padding:48px 0 120px;border-top:1px solid var(--line-dark)}
+footer p{max-width:900px;margin-bottom:10px}
+
+/* 固定 CTA & WhatsApp */
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:80;display:none;gap:8px;padding:8px;border-radius:999px;background:rgba(12,31,28,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);transform:translateY(130%);transition:transform .4s cubic-bezier(.2,.7,.2,1);margin-bottom:env(safe-area-inset-bottom,0px)}
+.sticky.show{transform:none}
+.sticky .btn{flex:1;min-height:48px;font-size:15px}
+.sticky .wa{flex:none;width:48px;padding:0;background:#25d366;color:#fff}
+@media (max-width:900px){.sticky{display:flex}}
+.fab{position:fixed;right:24px;bottom:24px;z-index:80;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transition:transform .2s}
+.fab:hover{transform:scale(1.08)}
+.fab svg,.sticky .wa svg{width:28px;height:28px;fill:#fff}
+@media (max-width:900px){.fab{display:none}}
+
+.modal{position:fixed;inset:0;z-index:200;background:rgba(12,31,28,.6);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.show{display:flex;animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+.modal-box{background:#fff;border-radius:28px;max-width:440px;width:100%;padding:40px 32px;text-align:center;position:relative;animation:pop .4s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.modal-box .x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:var(--paper-2);font-size:20px}
+.modal-box .emoji{font-size:48px}
+.modal-box h3{font-size:24px;margin:12px 0 8px}
+.modal-box p{color:var(--muted);margin-bottom:24px}
+.modal-box .btn{width:100%}
+.modal-box .skip{display:block;margin-top:12px;font-size:13px;color:var(--muted);text-decoration:underline;width:100%}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="brand-mark">🏪</span>Rawang 新店铺</a>
+    <nav class="nav-steps" aria-label="页面步骤">
+      <a href="#goal">目的</a>
+      <a href="#video">视频</a>
+      <a href="#location">地点</a>
+      <a href="#price">净价</a>
+      <a href="#units">选单位</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#book" class="btn btn-primary btn-sm" data-track="nav_book">预约 Viewing</a>
+  </div>
+</header>
+
+<!-- ============ HOOK ============ -->
+<section class="hero" id="top">
+  <div class="hero-img" role="img" aria-label="已建成的同区店铺实景"></div>
+  <div class="wrap">
+    <span class="pill reveal"><b>只有 35 间</b>Rawang 全新双层 &amp; 三层店铺</span>
+    <h1 class="reveal d1">在 Rawang 拥有一间店，<br>净价只要 <em id="heroFrom">RM1.16 mil</em> 起。</h1>
+    <p class="sub reveal d2">大型超市就在隔壁、3 条大道直达、隔壁一期已经有租户开张。<b>先扣 15%，再扣 5%，再送 1 年租金回酬</b> —— 点选单位，马上看到净价。</p>
+    <div class="hero-cta reveal d3">
+      <a href="#goal" class="btn btn-primary" data-track="hero_start">60 秒看懂这个机会 <span class="arrow">→</span></a>
+      <a href="#units" class="btn btn-ghost" data-track="hero_units">直接选单位看净价</a>
+    </div>
+    <div class="hero-note reveal d4"><span class="dot-live"></span>零首期* · Booking 只需 RM10k，贷款不批全额退还</div>
+    <div class="stats">
+      <div class="stat reveal"><b>20%<small>回扣</small></b><span>先扣 15% 再扣 5%</span></div>
+      <div class="stat reveal d1"><b>RM84k<small>起</small></b><span>1 年租金回酬（Cashback）</span></div>
+      <div class="stat reveal d2"><b>20′×70′</b><span>中间单位地段</span></div>
+      <div class="stat reveal d3"><b id="heroLeft">29</b><span>间还可以选</span></div>
+    </div>
+  </div>
+  <span class="ai-note">同区已建成店铺实景</span>
+</section>
+
+<!-- ============ STEP 1 · 目的 ============ -->
+<section class="sec" id="goal">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow reveal"><span class="num">1</span>先问你</span>
+      <h2 class="reveal d1">你买店，是为了什么？</h2>
+      <p class="lead reveal d2">选一个最接近你的，我告诉你这里适不适合。</p>
+    </div>
+    <div class="goals">
+      <button class="goal reveal" data-g="rent"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div class="em">💰</div><h4>收租 · 被动收入</h4><p>买下来出租，让店铺每个月帮我赚钱。</p></button>
+      <button class="goal reveal d1" data-g="biz"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div class="em">🏪</div><h4>自己做生意</h4><p>不想再交店租，想要一间自己的店面。</p></button>
+      <button class="goal reveal d2" data-g="asset"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div class="em">📈</div><h4>长期资产</h4><p>趁区域还在发展，先上车，等增值。</p></button>
+    </div>
+    <div class="answer" id="answer">
+      <div><div class="big" id="ansTitle"></div><p id="ansText"></p></div>
+      <a href="#video" class="btn btn-primary" data-track="goal_next">先看实地视频 <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 2 · 视频 ============ -->
+<section class="sec dark" id="video">
+  <div class="wrap">
+    <div class="vid-grid">
+      <div class="reveal">
+        <div class="phone" id="phone">
+          <video id="vid" src="video.mp4#t=0.5" playsinline preload="metadata" controls></video>
+          <button class="play" id="playBtn" aria-label="播放视频"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><em>▶ 1 分钟实地视频</em></button>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow reveal"><span class="num">2</span>亲眼看看</span>
+        <h2 class="reveal d1">不用听我讲，<br>你自己看现场。</h2>
+        <p class="lead reveal d2">我亲自去现场拍的。大型超市、隔壁已经开张的店、人流和车位 —— 1 分钟看清楚。</p>
+        <ul class="vpoints">
+          <li class="reveal"><i>🛒</i><div><b>大型超市就在旁边</b><span>Econsave 已经开张，天天带来固定人流</span></div></li>
+          <li class="reveal d1"><i>🍛</i><div><b>一期店铺已经有租户</b><span>Mamak、自助洗衣店等已经租下来做生意</span></div></li>
+          <li class="reveal d2"><i>🅿️</i><div><b>宽敞车位</b><span>客人好停车，生意才做得起来</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 3 · 地点 ============ -->
+<section class="sec" id="location">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="num">3</span>为什么是这里</span>
+    <h2 class="reveal d1">人流已经在了，<br><span class="hl-g">而且还在变多。</span></h2>
+    <p class="lead reveal d2">Kundang, Rawang —— 新的商业中心。周边住宅、工业区、大型超市同时在发展。</p>
+
+    <div class="bento">
+      <div class="tile photo s4 tall wide-m reveal" style="background-image:url('img/hypermarket.jpg')">
+        <span class="k">人流保证</span>
+        <h3 style="font-size:28px">大型超市就在隔壁</h3>
+        <p>Econsave Kundang —— 区内第一间大型超市，2026 年 1 月已经开张。买菜的人，就是你的客人。</p>
+      </div>
+      <div class="tile s2 reveal d1">
+        <span class="k">人口增长</span>
+        <div class="big">+44<small>%</small></div>
+        <p>Kundang 人口 10 年从 36,418 增加到 52,549（2010–2020）。</p>
+      </div>
+      <div class="tile s2 reveal">
+        <span class="k">商圈</span>
+        <div class="big">25<small>万+</small></div>
+        <p>Rawang–Kundang 一带总人口超过 250,000。</p>
+      </div>
+      <div class="tile photo s4 wide-m reveal d1" style="background-image:url('img/highways.jpg')">
+        <span class="k">交通</span>
+        <h3 style="font-size:28px">3 条大道直达</h3>
+        <p>LATAR (KL–Selangor Expressway) · Guthrie Corridor Expressway · 南北大道 / NKVE</p>
+      </div>
+      <div class="tile s3 reveal">
+        <span class="k">就业带动</span>
+        <h3>RM2.2 bil 汽车工业园</h3>
+        <p>Chery Smart Auto Industrial Park（Lembah Beringin）+ Sunway Industrial Park —— 工作机会带来住户和消费。</p>
+      </div>
+      <div class="tile s3 reveal d1">
+        <span class="k">辐射范围</span>
+        <h3>周边住宅区都会来</h3>
+        <div class="chips"><span>Kundang</span><span>Rawang</span><span>Gamuda Gardens</span><span>Bandar Tasik Puteri</span><span>Kuang</span><span>Anggun</span><span>Emerald</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 4 · 证明 ============ -->
+<section class="sec dark" id="proof">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="num">4</span>不是画饼</span>
+    <h2 class="reveal d1">第一期已经建好，<br>你买的这一期正在盖。</h2>
+    <p class="lead reveal d2">同一个发展区，前面几期都卖得差不多了。现在推出的是最新这一期，只有 35 间。</p>
+    <div class="proof">
+      <div class="pcard reveal"><div class="ph" style="background-image:url('img/shops.jpg')"></div><div class="bd"><span class="tag">✓ 已建成</span><h3>一期店铺：已经有租户开张</h3><p>2026 年 9 月实景。双层 / 三层店铺，前后都有车位。</p></div></div>
+      <div class="pcard reveal d1"><div class="ph" style="background-image:url('img/progress.jpg')"></div><div class="bd"><span class="tag o">🏗 建造中</span><h3>你这一期：结构已经起来了</h3><p>2026 年 9 月工地进度。紧贴大型超市，位置最靠近人流。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 5 · 净价拆解 ============ -->
+<section class="sec" id="price">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow reveal"><span class="num">5</span>算给你看</span>
+      <h2 class="reveal d1">一间店，到底要多少钱？</h2>
+      <p class="lead reveal d2">SPA 价格不是你真正付的价格。看看扣完之后剩多少。</p>
+    </div>
+    <div class="fall reveal">
+      <div>
+        <div class="wf-switch" id="wfSwitch"></div>
+        <div class="wf" id="wf"></div>
+        <p class="fine">* 净价 = SPA 价格 − 15% 回扣 − 5% 特别回扣 − 1 年租金回酬（GRR），按发展商最新价格表（2026 年 9 月 1 日）。GRR 于 CCC 发出后一个月支付。附带条件。</p>
+      </div>
+      <div class="wf-sum">
+        <div class="k">你真正的净价</div>
+        <div class="net">RM <span id="wfNet">0</span></div>
+        <span class="save" id="wfSave"></span>
+        <ul>
+          <li>零首期 Zero Entry Scheme*</li>
+          <li>SPA + 贷款律师费、MOT 都包了*</li>
+          <li>Booking 只需 RM10k，贷款不批全额退还</li>
+        </ul>
+        <a href="#units" class="btn btn-dark" style="margin-top:22px" data-track="wf_units">看每一间的净价 <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 6 · 选单位 ============ -->
+<section class="sec dark" id="units">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="num">6</span>选你的单位</span>
+    <h2 class="reveal d1">点一间，马上看净价。</h2>
+    <p class="lead reveal d2">35 间，每一间位置、面积、价格都不一样。红色是已经被订走的。</p>
+
+    <div class="picker reveal">
+      <div class="siteplan">
+        <div class="legend">
+          <span><i style="background:var(--t2)"></i>双层 · 中间</span>
+          <span><i style="background:var(--t3e)"></i>三层 · 边间</span>
+          <span><i style="background:var(--t3c)"></i>三层 · 转角</span>
+          <span><i style="background:var(--booked)"></i>已订</span>
+          <span><i style="background:var(--sold)"></i>已售</span>
+        </div>
+        <div class="filters" id="filters">
+          <button class="on" data-f="all">全部</button>
+          <button data-f="i2">双层中间</button>
+          <button data-f="e3">三层边间</button>
+          <button data-f="c3">三层转角</button>
+          <button data-f="open">只看可选</button>
+        </div>
+        <div class="plan-scroll"><svg id="plan" viewBox="0 0 900 600" aria-label="单位位置示意图"></svg></div>
+        <div class="plan-hint">← 左右滑动看完整图 →</div>
+      </div>
+      <div class="ucard" id="ucard"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 稀缺 ============ -->
+<section class="sec" id="scarce">
+  <div class="wrap">
+    <div class="scarce reveal">
+      <div>
+        <span class="eyebrow"><span class="num">7</span>老实说</span>
+        <h2>这一期，<br>只有 35 间。</h2>
+        <p>价钱最好入手的双层中间单位只有 <b id="cntI2">27</b> 间，三层转角只有 4 间。好位置通常是最先来看的人先挑走。<br><br><b>越早看，你能选的越多。</b></p>
+        <a href="#book" class="btn btn-dark" style="margin-top:26px" data-track="scarce_book">帮我留一个 Viewing 时段 <span class="arrow">→</span></a>
+      </div>
+      <div class="meter" id="meter"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow reveal"><span class="num">8</span>你可能在想</span>
+      <h2 class="reveal d1">常见问题</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>净价是怎么算出来的？<span class="plus">+</span></summary><p>SPA 价格先扣 15% 回扣，再扣 5% 特别回扣，最后扣掉 1 年保证租金回酬（GRR / Cashback）。中间单位 GRR 是 RM84,000，边间 RM108,000，转角 RM180,000–228,000。全部按发展商 2026 年 9 月 1 日的最新价格表。</p></details>
+      <details class="reveal"><summary>真的零首期吗？<span class="plus">+</span></summary><p>发展商提供 Zero Entry Scheme：SPA 律师费、贷款律师费、印花税和 MOT 都包在内，贷款最高可到 SPA 价格的 85%，比扣了回扣后的价格还高，所以不需要另外付首期。实际以银行批准为准，附带条件。</p></details>
+      <details class="reveal"><summary>Booking 要多少？不批贷款怎么办？<span class="plus">+</span></summary><p>Booking 只需 RM10,000。如果因为贷款不批而取消，Booking 全额退还。</p></details>
+      <details class="reveal"><summary>租金回酬（GRR）什么时候拿到？<span class="plus">+</span></summary><p>GRR 是 1 年的保证租金回酬，会在 CCC（完工证书）发出后一个月支付。</p></details>
+      <details class="reveal"><summary>双层和三层有什么分别？<span class="plus">+</span></summary><p>中间单位是双层，地段 20′ × 70′（1,400 sq ft），建筑面积 2,656 sq ft。边间是三层，建筑面积 4,050 sq ft。转角是三层，地更大，建筑面积 5,622–7,827 sq ft，两面临路，招牌最显眼。</p></details>
+      <details class="reveal"><summary>这个项目叫什么？在哪里？<span class="plus">+</span></summary><p>在 Kundang, Rawang，紧贴 Econsave 大型超市。项目详情、完整位置图和价格表，WhatsApp 我或者预约 viewing，我会全部发给你。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 预约 ============ -->
+<section class="sec dark" id="book">
+  <div class="wrap">
+    <div class="book">
+      <div>
+        <span class="eyebrow reveal"><span class="num">9</span>最后一步</span>
+        <h2 class="reveal d1">来现场，<br>站在你的店门口看看。</h2>
+        <p class="lead reveal d2">一对一带你看：一期实景店铺、大型超市人流、你看中的那间单位位置。</p>
+        <ul class="perks">
+          <li class="reveal"><i>🧾</i><div><b>你选的单位，完整价格拆解</b><span>SPA、回扣、GRR、贷款和月供，一次算清楚</span></div></li>
+          <li class="reveal d1"><i>🗺️</i><div><b>完整位置图 + 平面图</b><span>预约后第一时间发给你</span></div></li>
+          <li class="reveal d2"><i>☕</i><div><b>时间你定，周末也可以</b><span>不赶场，你问什么我答什么</span></div></li>
+        </ul>
+        <div class="agent reveal">
+          <div class="av" id="agentAv"></div>
+          <div><b id="agentName"></b><span id="agentRole"></span></div>
+        </div>
+      </div>
+
+      <form class="bf reveal d1" id="bookForm" novalidate>
+        <div id="formBody">
+          <h3>预约私人 Viewing</h3>
+          <p class="sub">填好后会直接打开 WhatsApp 发给我，30 秒搞定。</p>
+          <div class="field" id="fName"><label for="name">你的名字</label><input id="name" autocomplete="name" placeholder="例：陈先生"><div class="err">请填写名字</div></div>
+          <div class="field" id="fPhone"><label for="phone">手机号码</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="例：012-345 6789"><div class="err">请填写正确的手机号码</div></div>
+          <div class="row2">
+            <div class="field"><label for="purpose">买来做什么？</label>
+              <select id="purpose"><option value="">请选择</option><option value="rent">收租</option><option value="biz">自己做生意</option><option value="asset">长期资产</option></select></div>
+            <div class="field"><label for="unitSel">看中的单位</label><select id="unitSel"></select></div>
+          </div>
+          <div class="field"><label for="date">希望哪天来？</label><input id="date" type="date"></div>
+          <div class="field"><label>时段</label>
+            <div class="slots" id="slots"><button type="button" class="slot" data-v="上午">上午</button><button type="button" class="slot on" data-v="下午">下午</button><button type="button" class="slot" data-v="傍晚">傍晚</button></div>
+          </div>
+          <button type="submit" class="btn btn-primary" data-track="form_submit">确认预约 · 用 WhatsApp 发送 <span class="arrow">→</span></button>
+          <div class="trustline"><span>🔒 资料只用于安排 viewing</span><span>⚡ 通常 1 小时内回复</span></div>
+        </div>
+        <div class="done" id="done">
+          <div class="big">🎉</div>
+          <h3>差一步就完成！</h3>
+          <p>WhatsApp 已经打开，按“发送”就好。<br>如果没有自动打开，<a href="#" id="waRetry" style="color:var(--green);font-weight:700">点这里</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>以上价格、回扣、租金回酬（GRR）与配套依据发展商 2026 年 9 月 1 日价格表，仅供参考，附带条件，可能随时更改，恕不另行通知。单位状态以实际为准。贷款与月供为估算，以银行批准为准，不构成任何财务建议。图片为同区实景，位置图为示意，非按比例。</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <a href="#book" class="btn btn-primary" data-track="sticky_book">预约私人 Viewing</a>
+  <a href="#" class="btn wa js-wa" aria-label="WhatsApp" data-track="sticky_wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.2 1.3 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.6-8.3z"/></svg></a>
+</div>
+<a href="#" class="fab js-wa" aria-label="WhatsApp 我" data-track="fab_wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.2 1.3 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.6-8.3z"/></svg></a>
+
+<div class="modal" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitTitle">
+  <div class="modal-box">
+    <button class="x" id="exitClose" aria-label="关闭">×</button>
+    <div class="emoji">🧾</div>
+    <h3 id="exitTitle">先别走 —— 要不要价格表？</h3>
+    <p>35 间单位的完整净价表 + 位置图，WhatsApp 直接发给你。</p>
+    <a href="#" class="btn btn-primary js-wa" data-msg="list" data-track="exit_wa">WhatsApp 发给我</a>
+    <button class="skip" id="exitSkip">不用了，谢谢</button>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   ★★★ 你只需要改这里 ★★★
+   ========================================================= */
+const CONFIG = {
+  agentName:  "你的名字",                    // 例：Aden Foo
+  agentRole:  "店铺顾问 · 一对一带看",
+  agentPhoto: "",                             // 头像图片网址，留空就显示名字首字
+  whatsapp:   "601139193190",                 // WhatsApp 号码：国家码 + 号码，不要 + 或空格
+  booked:     ["1","2","18","20","21"],       // 已订单位（依 2026-09-10 销售图，记得更新）
+  sold:       ["8"],                          // 已售单位
+  loanRate:   4.1,                            // 月供估算：利率 %
+  loanYears:  30,                             // 月供估算：年限
+  loanMargin: 85,                             // 月供估算：贷款成数 %（按 SPA 价）
+  exitPopup:  true                            // 电脑版离开时是否弹出挽留窗
+};
+/* ========================================================= */
+
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+const fmt = n => Math.round(n).toLocaleString("en-MY");
+const mil = n => "RM" + (Math.floor(n / 1e4) / 100).toFixed(2) + " mil";
+const store = {
+  get(k){ try{ return sessionStorage.getItem(k) }catch(e){ return null } },
+  set(k,v){ try{ sessionStorage.setItem(k,v) }catch(e){} }
+};
+function track(name){ try{ if(window.gtag) gtag("event", name); if(window.fbq) fbq("trackCustom", name); }catch(e){} }
+$$("[data-track]").forEach(el => el.addEventListener("click", () => track(el.dataset.track)));
+
+/* ---------- 单位资料（来自 2026-09-01 价格表） ----------
+   no, 层数, 位置(i=中间 e=边间 c=转角), 地 sqft, 建筑面积 sqft, SPA, GRR, 净价 */
+const RAW = [
+  [1,3,"c",2820,7827,4655000,228000,3531000],
+  [2,2,"i",1400,2656,1638000,84000,1239000],[3,2,"i",1400,2656,1638000,84000,1239000],[4,2,"i",1400,2656,1638000,84000,1239000],
+  [5,2,"i",1400,2656,1638000,84000,1239000],[6,2,"i",1400,2656,1638000,84000,1239000],[7,2,"i",1400,2656,1638000,84000,1239000],
+  [8,3,"e",1400,4050,2466000,108000,1883000],
+  [9,3,"e",1400,4050,2414000,108000,1841000],
+  [10,2,"i",1400,2656,1561000,84000,1177000],[11,2,"i",1400,2656,1561000,84000,1177000],[12,2,"i",1400,2656,1561000,84000,1177000],
+  [13,2,"i",1400,2656,1561000,84000,1177000],[14,2,"i",1400,2656,1561000,84000,1177000],[15,2,"i",1400,2656,1561000,84000,1177000],
+  [16,2,"i",1400,2656,1561000,84000,1177000],[17,2,"i",1400,2656,1561000,84000,1177000],
+  [18,3,"c",2099,5622,3392000,180000,2559000],
+  [19,3,"c",2626,7260,4683000,228000,3554000],
+  [20,2,"i",1400,2656,1638000,84000,1239000],[21,2,"i",1400,2656,1638000,84000,1239000],[22,2,"i",1400,2656,1638000,84000,1239000],
+  [23,2,"i",1400,2656,1638000,84000,1239000],[24,2,"i",1400,2656,1638000,84000,1239000],[25,2,"i",1400,2656,1638000,84000,1239000],
+  [26,3,"e",1400,4050,2466000,108000,1883000],
+  [27,3,"e",1400,4050,2414000,108000,1841000],
+  [28,2,"i",1400,2656,1544000,84000,1163000],[29,2,"i",1400,2656,1544000,84000,1163000],[30,2,"i",1400,2656,1544000,84000,1163000],
+  [31,2,"i",1400,2656,1544000,84000,1163000],[32,2,"i",1400,2656,1544000,84000,1163000],[33,2,"i",1400,2656,1544000,84000,1163000],
+  [34,2,"i",1400,2656,1544000,84000,1163000],
+  [35,3,"c",3305,6902,3927000,180000,2991000]
+];
+const UNITS = RAW.map(([no,st,pos,land,bu,spa,grr,net]) => {
+  const r15 = spa * .15, after15 = spa - r15, r5 = after15 * .05, after5 = after15 - r5;
+  return {no:String(no), st, pos, land, bu, spa, grr, net, r15, after15, r5, after5, cat: pos === "i" ? "i2" : pos === "e" ? "e3" : "c3"};
+});
+const U = Object.fromEntries(UNITS.map(u => [u.no, u]));
+const status = no => CONFIG.sold.includes(no) ? "sold" : CONFIG.booked.includes(no) ? "booked" : "open";
+const CAT = {i2:{name:"双层 · 中间", color:"var(--t2)"}, e3:{name:"三层 · 边间", color:"var(--t3e)"}, c3:{name:"三层 · 转角", color:"var(--t3c)"}};
+const open = UNITS.filter(u => status(u.no) === "open");
+const minNet = Math.min(...(open.length ? open : UNITS).map(u => u.net));
+function monthly(spa){
+  const P = spa * CONFIG.loanMargin / 100, r = CONFIG.loanRate / 100 / 12, n = CONFIG.loanYears * 12;
+  return {P, m: P * r / (1 - Math.pow(1 + r, -n))};
+}
+
+/* ---------- 顾问 ---------- */
+$("#agentName").textContent = CONFIG.agentName;
+$("#agentRole").textContent = CONFIG.agentRole;
+if (CONFIG.agentPhoto) $("#agentAv").innerHTML = `<img src="${CONFIG.agentPhoto}" alt="">`;
+else $("#agentAv").textContent = CONFIG.agentName.trim().charAt(0) || "R";
+
+/* ---------- 头部数字 ---------- */
+$("#heroFrom").textContent = mil(minNet);
+$("#heroLeft").textContent = open.length;
+
+/* ---------- WhatsApp（不提项目名） ---------- */
+const state = { goal:"", unit:"" };
+const GOAL = {rent:"收租", biz:"自己做生意", asset:"长期资产"};
+const waLink = t => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t)}`;
+function quickMsg(kind){
+  if (kind === "list") return "你好！我在看 Rawang 新双层店铺，想要完整净价表和位置图，谢谢。";
+  let m = "你好！我对 Rawang 新双层店铺有兴趣，想了解更多。";
+  if (state.unit) m += `\n看中单位：Unit ${state.unit}（净价 RM${fmt(U[state.unit].net)}）`;
+  if (state.goal) m += `\n目的：${GOAL[state.goal]}`;
+  return m;
+}
+$$(".js-wa").forEach(a => a.addEventListener("click", e => { e.preventDefault(); window.open(waLink(quickMsg(a.dataset.msg)), "_blank", "noopener"); closeExit(); }));
+
+/* ---------- 滚动 ---------- */
+const nav = $("#nav"), prog = $("#progress"), sticky = $("#sticky"), steps = $$(".nav-steps a"), bookSec = $("#book");
+function onScroll(){
+  const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (h > 0 ? y / h * 100 : 0) + "%";
+  nav.classList.toggle("scrolled", y > 20);
+  sticky.classList.toggle("show", y > innerHeight * .8 && bookSec.getBoundingClientRect().top > innerHeight * .6);
+  let cur = null;
+  steps.forEach(a => { const s = $(a.getAttribute("href")); if (s && s.getBoundingClientRect().top < innerHeight * .4) cur = a; });
+  steps.forEach(a => a.classList.toggle("active", a === cur));
+}
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); if (e.target.classList.contains("fall")) playWF(); } }), {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+$$(".reveal").forEach(el => io.observe(el));
+
+/* ---------- STEP 1 目的 ---------- */
+const ANS = {
+  rent:["收租？这里很适合。","隔壁一期已经有 Mamak、洗衣店租下来做生意。加上大型超市带来的固定人流，租户找得到，店也租得出去。发展商还先送你 1 年租金回酬。"],
+  biz:["自己做生意？位置就是一切。","大型超市就在隔壁，客人买完东西顺路就到你店。宽敞车位、3 条大道直达，Rawang、Kundang、Gamuda Gardens 的人都会经过。"],
+  asset:["长期资产？现在是最早的上车点。","区内人口 10 年增长 44%，RM2.2 bil 汽车工业园正在带动就业。区域越成熟，店铺越值钱 —— 而现在扣完回扣，净价只要 SPA 的约 75%。"]
+};
+$$(".goal").forEach(g => g.addEventListener("click", () => {
+  $$(".goal").forEach(x => x.classList.remove("on")); g.classList.add("on");
+  state.goal = g.dataset.g; $("#purpose").value = state.goal;
+  $("#ansTitle").textContent = ANS[state.goal][0]; $("#ansText").textContent = ANS[state.goal][1];
+  $("#answer").classList.add("show"); track("goal_" + state.goal);
+}));
+
+/* ---------- STEP 2 视频 ---------- */
+const vid = $("#vid"), phone = $("#phone");
+vid.removeAttribute("controls");
+$("#playBtn").addEventListener("click", () => { vid.controls = true; vid.play(); track("video_play"); });
+vid.addEventListener("play", () => phone.classList.add("playing"));
+vid.addEventListener("ended", () => { phone.classList.remove("playing"); });
+
+/* ---------- STEP 5 净价拆解 ---------- */
+const WF_SAMPLES = [["28","双层中间"],["9","三层边间"],["18","三层转角"]];
+let wfUnit = "28", wfPlayed = false;
+$("#wfSwitch").innerHTML = WF_SAMPLES.map(([n,l]) => `<button data-u="${n}" class="${n === wfUnit ? "on" : ""}">${l} · Unit ${n}</button>`).join("");
+$$("#wfSwitch button").forEach(b => b.addEventListener("click", () => { $$("#wfSwitch button").forEach(x => x.classList.remove("on")); b.classList.add("on"); wfUnit = b.dataset.u; renderWF(true); }));
+function renderWF(animate){
+  const u = U[wfUnit], max = u.spa;
+  const rows = [
+    ["SPA 价格", u.spa, 0, u.spa, "var(--ink-3)", ""],
+    ["− 15% 回扣", -u.r15, u.after15, u.r15, "var(--coral)", "minus"],
+    ["− 5% 特别回扣", -u.r5, u.after5, u.r5, "var(--coral)", "minus"],
+    ["− 1 年租金回酬", -u.grr, u.after5 - u.grr, u.grr, "var(--accent)", "minus"],
+    ["= 净价", u.net, 0, u.net, "var(--green)", "total"]
+  ];
+  $("#wf").innerHTML = rows.map(([lb,val,left,w,c,cls]) => `<div class="wf-row ${cls}"><span class="lb">${lb}</span><div class="bar"><i style="background:${c};left:${animate || wfPlayed ? left / max * 100 : 0}%;width:${animate || wfPlayed ? w / max * 100 : 0}%"></i></div><span class="v">${val < 0 ? "− " : ""}RM${fmt(Math.abs(val))}</span></div>`).join("");
+  $("#wfNet").textContent = fmt(u.net);
+  const saved = u.spa - u.net;
+  $("#wfSave").textContent = `省了 RM${fmt(saved)}（SPA 的 ${Math.round(saved / u.spa * 100)}%）`;
+}
+function playWF(){ if (wfPlayed) return; renderWF(false); requestAnimationFrame(() => requestAnimationFrame(() => { wfPlayed = true; renderWF(true); })); }
+renderWF(false);
+
+/* ---------- STEP 6 位置图（示意，非按比例） ---------- */
+(function(){
+  const svg = $("#plan"); let h = "";
+  const NS = "http://www.w3.org/2000/svg";
+  const fill = u => { const s = status(u.no); return s === "sold" ? "var(--sold)" : s === "booked" ? "var(--booked)" : CAT[u.cat].color; };
+  const unit = (no, d, tx, ty, fs) => { const u = U[no], s = status(no);
+    return `<g class="u ${s}" data-u="${no}" data-cat="${u.cat}" data-st="${s}" tabindex="0" role="button" aria-label="Unit ${no}">
+      <path d="${d}" fill="${fill(u)}" stroke="#0c1f1c" stroke-width="1.5"/>
+      <text x="${tx}" y="${ty}" font-size="${fs || 14}" text-anchor="middle" fill="#0c1f1c">${no}</text></g>`; };
+  // 背景：道路、超市
+  h += `<rect x="0" y="0" width="900" height="600" rx="16" fill="#10241f"/>`;
+  h += `<rect x="40" y="18" width="470" height="70" rx="10" fill="#1d3b35" stroke="#2b5249"/>
+        <text x="275" y="50" fill="#9fd9c4" font-size="15" font-weight="800" text-anchor="middle" font-family="Inter,Noto Sans SC">🛒 ECONSAVE 大型超市</text>
+        <text x="275" y="70" fill="#7f938e" font-size="11" text-anchor="middle" font-family="Inter,Noto Sans SC">已开张 · 天天有人流</text>`;
+  // 停车格
+  const park = (x,y,n,w,hh) => { let s = ""; for (let i = 0; i < n; i++) s += `<rect x="${x + i * w}" y="${y}" width="${w - 3}" height="${hh}" rx="2" fill="none" stroke="#2b4a44"/>`; return s; };
+  h += park(40,104,21,22,22) + park(40,282,21,22,22) + park(40,440,21,22,22);
+  // A 排：26 → 19（左到右）
+  const ax = 40, ay = 134, aw = 50, ah = 132;
+  ["26","25","24","23","22","21","20"].forEach((n,i) => { const x = ax + i * aw; h += unit(n, `M${x} ${ay} h${aw} v${ah} h-${aw} Z`, x + aw / 2, ay + ah / 2 + 5); });
+  { const x = ax + 7 * aw; h += unit("19", `M${x} ${ay} h64 l40 70 v62 h-104 Z`, x + 48, ay + ah / 2 + 5, 16); }
+  // B 排：27 → 35
+  const by = 312, bh = 120;
+  ["27","28","29","30","31","32","33","34"].forEach((n,i) => { const x = ax + i * aw; h += unit(n, `M${x} ${by} h${aw} v${bh} h-${aw} Z`, x + aw / 2, by + bh / 2 + 5); });
+  { const x = ax + 8 * aw; h += unit("35", `M${x} ${by} h52 l50 70 v50 h-102 Z`, x + 44, by + bh / 2 + 5, 16); }
+  h += `<text x="250" y="${by + bh + 34}" fill="#7f938e" font-size="11" text-anchor="middle" font-family="Inter,Noto Sans SC">前后都有车位 · 示意图，非按比例</text>`;
+  // C 列：18（上）→ 9（下），斜放
+  let g = `<g transform="translate(600 120) rotate(-12)">`;
+  const cw = 120, ch = 40;
+  g += unit("18", `M0 0 h${cw} v52 h-${cw} v-30 Z`, cw / 2, 32, 15);
+  ["17","16","15","14","13","12","11","10","9"].forEach((n,i) => { const y = 52 + i * ch; g += unit(n, `M0 ${y} h${cw} v${ch} h-${cw} Z`, cw / 2, y + ch / 2 + 5); });
+  g += `</g>`;
+  // D 列：1（上）→ 8（下）
+  g += `<g transform="translate(752 96) rotate(-12)">`;
+  g += unit("1", `M22 0 h${cw - 22} v58 h-${cw} v-36 Z`, cw / 2, 36, 15);
+  ["2","3","4","5","6","7","8"].forEach((n,i) => { const y = 58 + i * ch; g += unit(n, `M0 ${y} h${cw} v${ch} h-${cw} Z`, cw / 2, y + ch / 2 + 5); });
+  g += `</g>`;
+  h += g;
+  svg.innerHTML = h;
+  $$(".u", svg).forEach(el => {
+    el.addEventListener("click", () => selectUnit(el.dataset.u, true));
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); selectUnit(el.dataset.u, true); } });
+  });
+})();
+function renderCard(){
+  const c = $("#ucard");
+  if (!state.unit){ c.innerHTML = `<div class="empty"><b>👆</b>点图上任何一间单位<br>马上看净价</div>`; return; }
+  const u = U[state.unit], s = status(u.no), lm = monthly(u.spa);
+  c.innerHTML = `
+    <div class="k">${CAT[u.cat].name}</div>
+    <h3>Unit ${u.no}</h3>
+    ${s === "sold" ? `<span class="badge s">已售出</span>` : s === "booked" ? `<span class="badge b">已被预订</span>` : `<span class="badge">✓ 还可以选</span>`}
+    <dl class="specs"><div><dt>层数</dt><dd>${u.st} 层</dd></div><div><dt>地段</dt><dd>${fmt(u.land)} sf</dd></div><div><dt>建筑面积</dt><dd>${fmt(u.bu)} sf</dd></div></dl>
+    <ul class="calc">
+      <li><span>SPA 价格</span><b>RM${fmt(u.spa)}</b></li>
+      <li class="m"><span>− 15% 回扣</span><b>− RM${fmt(u.r15)}</b></li>
+      <li class="m"><span>− 5% 特别回扣</span><b>− RM${fmt(u.r5)}</b></li>
+      <li class="m"><span>− 1 年租金回酬（Cashback）</span><b>− RM${fmt(u.grr)}</b></li>
+    </ul>
+    <div class="netbox">
+      <div class="l">净价 Nett Price</div>
+      <div class="n">RM${fmt(u.net)}</div>
+      <div class="s">省了 RM${fmt(u.spa - u.net)} · 约 SPA 的 ${Math.round(u.net / u.spa * 100)}% · 每 sf 约 RM${fmt(u.net / u.bu)}</div>
+      <div class="mo">估计月供 <b>RM${fmt(lm.m)}</b> / 月（贷款 ${CONFIG.loanMargin}% = RM${fmt(lm.P)}，${CONFIG.loanYears} 年，${CONFIG.loanRate}%）*</div>
+    </div>
+    <a href="#book" class="btn btn-primary" id="cardCta">${s === "open" ? `预约看 Unit ${u.no}` : "帮我找类似的单位"} <span class="arrow">→</span></a>`;
+  $("#cardCta").addEventListener("click", () => track("unit_book"));
+}
+function selectUnit(no, user){
+  if (!U[no]) return;
+  state.unit = no;
+  $$("#plan .u").forEach(g => g.classList.toggle("sel", g.dataset.u === no));
+  renderCard();
+  if (status(no) !== "sold") $("#unitSel").value = no;
+  if (user){ track("unit_select"); if (innerWidth < 1000) $("#ucard").scrollIntoView({behavior:"smooth", block:"nearest"}); }
+}
+$$("#filters button").forEach(b => b.addEventListener("click", () => {
+  $$("#filters button").forEach(x => x.classList.remove("on")); b.classList.add("on");
+  const f = b.dataset.f;
+  $$("#plan .u").forEach(g => g.classList.toggle("dim", f === "open" ? g.dataset.st !== "open" : f !== "all" && g.dataset.cat !== f));
+}));
+renderCard();
+
+/* ---------- 稀缺 ---------- */
+(function(){
+  const rows = [["i2","双层 · 中间"],["e3","三层 · 边间"],["c3","三层 · 转角"]];
+  $("#meter").innerHTML = rows.map(([k,l]) => {
+    const all = UNITS.filter(u => u.cat === k), left = all.filter(u => status(u.no) === "open").length;
+    const from = Math.min(...all.map(u => u.net));
+    return `<div class="mrow"><div class="t"><span>${l} · 净价 ${mil(from)} 起</span><span>剩 ${left} / ${all.length}</span></div><div class="bar"><i style="width:${left / all.length * 100}%"></i></div></div>`;
+  }).join("") + `<div class="mrow"><div class="t"><span>全部</span><span>剩 ${open.length} / 35</span></div><div class="bar"><i style="width:${open.length / 35 * 100}%"></i></div></div>`;
+  $("#cntI2").textContent = UNITS.filter(u => u.cat === "i2").length;
+})();
+
+/* ---------- 表单 ---------- */
+$("#unitSel").innerHTML = `<option value="">还不确定</option>` + UNITS.filter(u => status(u.no) !== "sold").map(u => `<option value="${u.no}">Unit ${u.no} · ${CAT[u.cat].name} · 净价 RM${fmt(u.net)}</option>`).join("");
+const dateIn = $("#date");
+(function(){ const d = new Date(); d.setDate(d.getDate() + 1); const iso = x => x.toISOString().slice(0, 10); dateIn.min = iso(new Date()); dateIn.value = iso(d); })();
+let slot = "下午";
+$$("#slots .slot").forEach(b => b.addEventListener("click", () => { $$("#slots .slot").forEach(x => x.classList.remove("on")); b.classList.add("on"); slot = b.dataset.v; }));
+let lastLink = "";
+$("#bookForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const name = $("#name").value.trim(), phone = $("#phone").value.trim();
+  const okName = name.length > 0, okPhone = phone.replace(/\D/g, "").length >= 9;
+  $("#fName").classList.toggle("bad", !okName); $("#fPhone").classList.toggle("bad", !okPhone);
+  if (!okName || !okPhone){ (okName ? $("#phone") : $("#name")).focus(); return; }
+  const un = $("#unitSel").value, pu = $("#purpose").value;
+  const lines = [
+    "你好！我想预约 Rawang 新双层店铺私人 Viewing 🙋",
+    `名字：${name}`, `电话：${phone}`,
+    pu ? `目的：${GOAL[pu]}` : "",
+    un ? `看中单位：Unit ${un}（净价 RM${fmt(U[un].net)}）` : "",
+    `时间：${dateIn.value || "再约"}（${slot}）`
+  ].filter(Boolean);
+  lastLink = waLink(lines.join("\n"));
+  window.open(lastLink, "_blank", "noopener");
+  $("#formBody").style.display = "none"; $("#done").style.display = "block";
+  store.set("rws_booked", "1"); track("lead_submit");
+});
+$("#waRetry").addEventListener("click", e => { e.preventDefault(); if (lastLink) window.open(lastLink, "_blank", "noopener"); });
+
+/* ---------- 离开挽留 ---------- */
+const modal = $("#exitModal");
+function closeExit(){ modal.classList.remove("show"); }
+$("#exitClose").addEventListener("click", closeExit); $("#exitSkip").addEventListener("click", closeExit);
+modal.addEventListener("click", e => { if (e.target === modal) closeExit(); });
+addEventListener("keydown", e => { if (e.key === "Escape") closeExit(); });
+if (CONFIG.exitPopup){
+  const armAt = Date.now() + 15000;
+  document.addEventListener("mouseout", e => {
+    if (e.relatedTarget || e.clientY > 10 || Date.now() < armAt) return;
+    if (store.get("rws_exit") || store.get("rws_booked")) return;
+    store.set("rws_exit", "1"); modal.classList.add("show"); track("exit_show");
+  });
+}
+</script>
+</body>
+</html>
